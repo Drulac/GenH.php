@@ -14,7 +14,7 @@ echo $view->start();
 echo $view->form(array(
 		new PGH\input(array('name' => 'username', 'id' => 'username', 'placeholder' => 'Pseudo')),
 		new PGH\input(array('name' => 'password', 'type' => 'password', 'id' => 'password', 'placeholder' => 'Password')),
-		new PGH\input(array('type' => 'submit', 'value' => 'Connecton'))
+		new PGH\input(array('type' => 'submit', 'value' => 'Connection'))
 	), array(
 		'method' => 'post'
 	));
