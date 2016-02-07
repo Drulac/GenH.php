@@ -1,6 +1,7 @@
 <?php
     
 namespace PhpGenHTML
+
 {
     
     class View
