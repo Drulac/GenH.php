@@ -1,5 +1,5 @@
 # PhpGenHTML
-A little php framework to easily generate clean html code, with automatic identation.
+A little PHP framework to easily generate clean HTML code, with automatic identation.
 You can use it like this :
 
 ```php
