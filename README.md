@@ -22,7 +22,7 @@ echo $view->formulaire(array(
   }
 ```
   
-to get :
+the return :
 
 ```html
 <!DOCTYPE html>
