@@ -59,7 +59,7 @@ Print the return of the **start()** function to print the html doctype and the h
 echo $view->start();
 ```
 
-**_Loading summary_** :
+**_Loading Example_** :
 ```php
 include('fonctions/view.php');
 use PhpGenHTML as PGH;
