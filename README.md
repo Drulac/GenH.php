@@ -4,7 +4,7 @@ A little PHP framework to easily generate clean HTML code, with automatic identa
 You can use it like this to make a connection form :
 
 ```php
-include('fonctions/view.php');
+include('view.php');
 
 use PhpGenHTML as PGH;
 
@@ -13,8 +13,8 @@ echo $view->start();
 
 echo $view->form(array(
 		new PGH\input(array('name' => 'username', 'id' => 'username', 'placeholder' => 'Pseudo')),
-		new PGH\input(array('name' => 'password', 'type' => 'password', 'id' => 'password', 'placeholder' => 'Mot de passe')),
-		new PGH\input(array('type' => 'submit', 'value' => 'Connexion'))
+		new PGH\input(array('name' => 'password', 'type' => 'password', 'id' => 'password', 'placeholder' => 'Password')),
+		new PGH\input(array('type' => 'submit', 'value' => 'Connecton'))
 	), array(
 		'method' => 'post'
 	));
@@ -44,7 +44,7 @@ to get in input :
 ###### Loading
 You must include the code file.
 ```php
-include('fonctions/view.php');
+include('view.php');
 ```
 You can use an alias to code more fast, with less chars.
 ```php
@@ -61,7 +61,7 @@ echo $view->start();
 
 **_Loading Example_** :
 ```php
-include('fonctions/view.php');
+include('view.php');
 use PhpGenHTML as PGH;
 $view = New PGH\View();
 echo $view->start();
