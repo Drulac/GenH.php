@@ -25,7 +25,7 @@ if(!empty($view)){
 }
 ```
   
-the return :
+to get in input :
 
 ```html
 <!DOCTYPE html>
