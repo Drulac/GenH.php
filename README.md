@@ -37,3 +37,32 @@ to get in input :
   </form>
 </html>
 ```
+
+
+
+## Documentation
+###### Loading
+You must include the code file.
+```php
+include('fonctions/view.php');
+```
+You can use an alias to code more fast, with less chars.
+```php
+use PhpGenHTML as PGH;
+```
+Make into a variable PGH object.
+```php
+$view = New PGH\View();
+```
+Print the return of the **start()** function to print the html doctype and the html start tag.
+```php
+echo $view->start();
+```
+
+**_Loading summary_** :
+```php
+include('fonctions/view.php');
+use PhpGenHTML as PGH;
+$view = New PGH\View();
+echo $view->start();
+```
