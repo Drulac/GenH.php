@@ -1,6 +1,6 @@
 # PhpGenHTML
 A little PHP framework to easily generate clean HTML code, with automatic identation.
-
+#It's an old documentation, don't use it, it's updating
 You can use it like this to make a connection form :
 
 ```php
