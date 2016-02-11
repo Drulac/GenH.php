@@ -46,7 +46,7 @@ You must include the code file.
 ```php
 include('view.php');
 ```
-You can use an alias to code more fast, with less chars.
+You can use an alias to code faster, with less chars.
 ```php
 use PhpGenHTML as PGH;
 ```
