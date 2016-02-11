@@ -1,7 +1,6 @@
 <?php
     
 namespace PhpGenHTML
-
 {
     
     class View
@@ -17,6 +16,9 @@ namespace PhpGenHTML
             if (!$this->html_start) {
                 $code = '<!DOCTYPE html>'."\n".'<html>';
                 $this->html_start = 1;
+                $code .= $this->view(array(0 => 
+                    New Head(array())
+                ));
                 $this->levelUp();
                 return $code;
             }
@@ -26,11 +28,7 @@ namespace PhpGenHTML
         public function end()
         {
             $code = '';
-            if ($this->body_start) {
-                $code .= "\n".$this->level.'</body>';
-                $this->body_start = 0;
-                $this->level_down();
-            }
+            $code .= $this->bodyEnd();
             if ($this->html_start) {
                 $this->html_start = 0;
                 $this->levelDown();
@@ -43,9 +41,8 @@ namespace PhpGenHTML
         {
             if (!$this->body_start) {
                 $code = '';
-                $code .= "\n".$this->level.'<body>';
+                $code .= "\n".$this->level().'<body id="touchsurface">';
                 $this->body_start = 1;
-                $this->level_up();
                 return $code;
             }
             return '';
@@ -55,79 +52,46 @@ namespace PhpGenHTML
         {
             if ($this->body_start) {
                 $code = '';
-                $this->level_down();
-                $code .= "\n".$this->level.'</body>';
+                $this->levelDown();
+                $code .= "\n".$this->level().'</body>';
                 $this->body_start = 0;
                 return $code;
             }
             return '';
         }
-    
-        public function form($array, $infos)
+
+        public function view($array)
         {
-            $code = "\n".$this->level.'<form';
-    
-            foreach ($infos as $cle => $element) {
-                $code .= ' '.$cle.'="'.$element.'"';
+            $code = '';
+            if (gettype($array) == 'array') {
+                $i = 0;
+                $c = count($array);
+        
+                $this->levelUp();
+        
+                while ($i < $c) {
+                    $code .= "\n".$this->level.$array[$i]->getCode($this);
+        
+                    $i++;
+                }
+        
+                $this->levelDown();
+            }else if (!empty($array)){
+                $code .= htmlspecialchars($array);
             }
-            $code .= '>';
-    
-            $i = 0;
-            $c = count($array);
-    
-            $this->levelUp();
-    
-            while ($i < $c) {
-                $code .= "\n".$this->level.$array[$i]->getCode();
-    
-                $i++;
-            }
-    
-            $this->levelDown();
-    
-            $code .= "\n".$this->level.'</form>';
             return $code;
         }
-    
+ 
         public function error($texte)
         {
-            return $this->div(array(
-                new texte(null, $texte)
-            ), array(
-                'class' => 'erreur'
+            return $this->view(array(0 => 
+                New Div(array(
+                    new P($texte),
+                    new Img(array('src' => '/images/warning.png', 'alt' => 'erreur'))
+                ), array('class' => 'erreur'))
             ));
         }
-    
-        public function div($array, $infos)
-        {
-            $code = "\n".$this->level.'<div';
-            if (!empty($infos)) {
-                foreach ($infos as $cle => $element) {
-                    $code .= ' '.$cle.'="'.$element.'"';
-                }
-            }
-            $code .= '>';
-    
-            $i = 0;
-            $c = count($array);
-    
-            $this->level_up();
-    
-            while ($i < $c) {
-                $code .= "\n".$this->level.$array[$i]->getCode();
-    
-                $i++;
-            }
-    
-            $this->level_down();
-    
-            $code .= "\n".$this->level.'</div>';
-            return $code;
-        }
-    
-        
-    
-    
+       
         private function levelUp()
         {
             $this->level .= "\t";
@@ -137,103 +101,330 @@ namespace PhpGenHTML
         {
             $this->level = substr($this->level, 0, -1);
         }
+    
+        public function level()
+        {
+            return $this->level;
+        }
     }
 
+    //__construct($array)
     class Element
     {
         public $array;
+        public $attribut;
     
-        public function __construct($array, $texte = '')
+        public function __construct($array = NULL)
         {
             if (!empty($array))
                 $this->array = $array;
-            if (!empty($texte))
-                $this->texte = $texte;
-            return 1;
-        }
-    }
-    
-    class Input
-    {
-        public $array;
-    
-        public function __construct($array)
-        {
-            if (!empty($array))
-                $this->array = $array;
-            if (empty($array['type'])) {
-                $this->array['type'] = 'text';
-            }
             return 1;
         }
     
-        public function getCode()
+        public function setAttribut($attribut)
         {
-            $code = '<input';
+            if (!empty($attribut))
+                $this->attribut = $attribut;
+            return 1;
+        }
+
+        public function code($view)
+        {
+            $code = '<'.$this->attribut;
             if (!empty($this->array)) {
-                foreach ($this->array as $cle => $element) {
-                    $code .= ' '.$cle.'="'.$element.'"';
+                if (gettype($this->array) == 'array'){
+                    foreach ($this->array as $cle => $element) {
+                        $code .= ' '.$cle.'="'.$element.'"';
+                    }
+                }else{
+                    $code .= htmlspecialchars($this->array);
                 }
             }
             $code .= '>';
             return $code;
         }
     }
+
+    //__construct($content, $array)
+    class Container
+    {
+        public $array;
+        public $attribut;
+        public $content;
+    
+        public function __construct($content, $array = NULL)
+        {
+            if (!empty($array))
+                $this->array = $array;
+            if (!empty($content))
+                $this->content = $content;
+            return 1;
+        }
+    
+        public function setAttribut($attribut)
+        {
+            if (!empty($attribut))
+                $this->attribut = $attribut;
+            return 1;
+        }
+    
+        public function code($view)
+        {
+            $code = '<'.$this->attribut;
+            if (!empty($this->array)) {
+                foreach ($this->array as $cle => $element) {
+                    if (!empty($element) && !empty($cle))
+                        $code .= ' '.$cle.'="'.$element.'"';
+                }
+            }
+            $code .= '>';
+            
+            $code .= $view->view($this->content);
+
+            if (gettype($this->content) == 'array')
+                $code .= "\n".$view->level();
+
+            $code .= '</'.$this->attribut.'>';
+            return $code;
+        }
+    }
+    
+    class Input extends Element
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('input');
+            return $this->code($view);
+        }
+    }
     
     class Link extends Element
     {
-        public $texte = '';
-    
-        public function getCode()
+        public function getCode($view)
         {
-            $code = '<a';
-            if (!empty($this->array)) {
-                foreach ($this->array as $cle => $element) {
-                    $code .= ' '.$cle.'="'.$element.'"';
-                }
-            }
-            $code .= '>'.htmlspecialchars($this->texte).'</a>';
-            return $code;
+            $this->setAttribut('link');
+            return $this->code($view);
+        }
+    }
+    class Meta extends Element
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('meta');
+            return $this->code($view);
+        }
+    }
+
+    class Img extends Element
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('img');
+            return $this->code($view);
         }
     }
     
-    class Text extends Element
+    class Script extends Container
     {
-        public $texte = '';
-    
-        public function getCode()
+        public function getCode($view)
         {
-            $code = '<p';
-            if (!empty($this->array)) {
-                foreach ($this->array as $cle => $element) {
-                    $code .= ' '.$cle.'="'.$element.'"';
-                }
-            }
-            $code .= '>'.htmlspecialchars($this->texte).'</p>';
-            return $code;
+            $this->setAttribut('script');
+            return $this->code($view);
+        }
+    }
+
+    class Div extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('div');
+            return $this->code($view);
+        }
+    }
+
+    class Pre extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('pre');
+            return $this->code($view);
+        }
+    }
+
+    class Ul extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('ul');
+            return $this->code($view);
+        }
+    }
+
+    class Li extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('li');
+            return $this->code($view);
+        }
+    }
+
+    class Header extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('header');
+            return $this->code($view);
+        }
+    }
+
+    class Title extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('title');
+            return $this->code($view);
+        }
+    }
+
+    class Head extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('head');
+            return $this->code($view);
+        }
+    }
+
+    class Form extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('form');
+            return $this->code($view);
         }
     }
     
-    class TextArea extends Element
+    class A extends Container
     {
-        public $texte = '';
-    
-        public function getCode()
+        public function getCode($view)
         {
-            $code = '<textarea';
-            if (!empty($this->array)) {
-                foreach ($this->array as $cle => $element) {
-                    $code .= ' '.$cle.'="'.$element.'"';
-                }
-            }
-            $code .= '>'.htmlspecialchars($this->texte).'</textarea>';
-            return $code;
+            $this->setAttribut('a');
+            return $this->code($view);
         }
     }
     
-    class Line extends Element
+    class P extends Container
     {
-        public function getCode()
+        public function getCode($view)
+        {
+            $this->setAttribut('p');
+            return $this->code($view);
+        }
+    }
+    
+    class Span extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('span');
+            return $this->code($view);
+        }
+    }
+    
+    class Strong extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('strong');
+            return $this->code($view);
+        }
+    }
+    
+    class Em extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('em');
+            return $this->code($view);
+        }
+    }
+    
+    class Code extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('code');
+            return $this->code($view);
+        }
+    }
+    
+    class H1 extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('h1');
+            return $this->code($view);
+        }
+    }
+    
+    class H2 extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('h2');
+            return $this->code($view);
+        }
+    }
+    
+    class H3 extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('h3');
+            return $this->code($view);
+        }
+    }
+    
+    class H4 extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('h4');
+            return $this->code($view);
+        }
+    }
+    
+    class H5 extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('h5');
+            return $this->code($view);
+        }
+    }
+    
+    class H6 extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('h6');
+            return $this->code($view);
+        }
+    }
+    
+    class TextArea extends Container
+    {
+        public function getCode($view)
+        {
+            $this->setAttribut('textarea');
+            return $this->code($view);
+        }
+    }
+    
+    class Line
+    {
+        public function getCode($view)
         {
             return '<br>';
         }
