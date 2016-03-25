@@ -9,11 +9,35 @@ Un petit framework PHP pour générer facilement du code HTML propre, avec une i
 
 
 
-#Français
+##Français
 
-Vous pouvez regarder le fichier sample.php, c'est un code exemple d'utilisation du framework.
+Vous pouvez regarder le fichier [sample.php](https://github.com/Drulac/PhpGenHTML/blob/master/sample.php), c'est un code exemple d'utilisation du framework.
 
+###### Chargement
+Vous devez inclure le fichier [view.php](https://github.com/Drulac/PhpGenHTML/blob/master/view.php) qui contient le code du framework
+```php
+include('view.php');
+```
+Vous pouvez utiliser un alias pour gagner du temps en écrivant moins de caractères à chaques fois
+```php
+use PhpGenHTML as V;
+```
+Créez une variable contenant un objet View, du namespace PhpGenHTML (alliasé ici `V`). C'est cette variable qui va nous servir pour récuper le code HTML à afficher.
+```php
+$view = New V\View();
+```
+Affichez ensuite le retour de la fonction **start()** pour afficher le doctype HTML et le tag HTML de départ.
+```php
+echo $view->start();
+```
 
+**_Récapitulatif_** :
+```php
+include('view.php');
+use PhpGenHTML as PGH;
+$view = New PGH\View();
+echo $view->start();
+```
 
 
 
