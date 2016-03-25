@@ -14,11 +14,11 @@ Vous pouvez utiliser un alias pour gagner du temps en écrivant moins de caract�
 ```php
 use PhpGenHTML as V;
 ```
-Créez une variable contenant un objet `View`, du namespace PhpGenHTML (ici l'alias `V` est utilisé). Cette variable qui va nous servir pour récupérer le code HTML à afficher.
+Créez une variable contenant un objet `View`, du namespace PhpGenHTML (ici l'alias `V` est utilisé). Cette variable qui va nous servir pour récupérer le code HTML à afficher
 ```php
 $view = New V\View();
 ```
-Affichez ensuite le retour de la fonction `start()` pour afficher le doctype HTML et le tag HTML de départ.
+Affichez ensuite le retour de la fonction `start()` pour afficher le doctype HTML et le tag HTML de départ
 ```php
 echo $view->start();
 ```
