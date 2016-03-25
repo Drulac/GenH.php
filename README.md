@@ -34,8 +34,8 @@ echo $view->start();
 **_Récapitulatif_** :
 ```php
 include('view.php');
-use PhpGenHTML as PGH;
-$view = New PGH\View();
+use PhpGenHTML as V;
+$view = New V\View();
 echo $view->start();
 ```
 
