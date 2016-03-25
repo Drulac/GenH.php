@@ -6,7 +6,7 @@ Un petit framework PHP pour générer facilement du code HTML propre, avec une i
 
 Vous pouvez regarder le fichier [sample.php](https://github.com/Drulac/PhpGenHTML/blob/master/sample.php), c'est un code exemple d'utilisation du framework.
 
-###### Chargement
+### Chargement
 Vous devez inclure le fichier [view.php](https://github.com/Drulac/PhpGenHTML/blob/master/view.php) qui contient le code du framework
 ```php
 include('view.php');
@@ -15,16 +15,16 @@ Vous pouvez utiliser un alias pour gagner du temps en écrivant moins de caract�
 ```php
 use PhpGenHTML as V;
 ```
-Créez une variable contenant un objet View, du namespace PhpGenHTML (alliasé ici `V`). C'est cette variable qui va nous servir pour récuper le code HTML à afficher.
+Créez une variable contenant un objet View, du namespace PhpGenHTML (ici l'alias `V` est utilisé). Cette variable qui va nous servir pour récuper le code HTML à afficher.
 ```php
 $view = New V\View();
 ```
-Affichez ensuite le retour de la fonction **start()** pour afficher le doctype HTML et le tag HTML de départ.
+Affichez ensuite le retour de la fonction `start()` pour afficher le doctype HTML et le tag HTML de départ.
 ```php
 echo $view->start();
 ```
 
-### Récapitulatif :
+#### Récapitulatif :
 ```php
 include('view.php');
 use PhpGenHTML as V;
@@ -32,10 +32,45 @@ $view = New V\View();
 echo $view->start();
 ```
 
+### Balises
 
+Pour afficher des balises on utilise la fonction `view()` de notre variable `$view`
+```php
+$view->view();
+```
+cette fonction nous retourne le code HTML à afficher. Il faut donc faire un `echo`
+```php
+echo $view->view();
+```
+On donne à la fonction `view()` un tableau contenant les balises à afficher
+```php
+echo $view->view(array(
+  $composant1,
+  $composant2,
+  $composant3
+));
+```
 
+En HTML il y a 2 types de balises :
+ - Les balises orphelines (exemple `<img>`)
+ - Les balises en paires (exemple `<div></div>`)
 
+Les balises orphelines possèdent différents attributs, tandis que les balises en paires peuvent accueillir du contenu, en plus des attributs.
 
+Pour créer une balise, on utilise mot clé `new`, le namespace (ici l'alias `V` est utilisé), puis le nom de la balise
+```php
+new V\Div()
+```
+Pour les balises en paires, on donne comme arguments un tableau avec les balises enfants, puis un tableau associatif avec les attributs
+```php
+new V\Div(array(
+  new V\Div()
+), array('id' => 'htwo', 'class' => 'test'))
+```
+On peut également passer directemnt un texte à la place du tableau de composant
+```php
+new V\Div('Contenu', array('id' => 'htwo', 'class' => 'test'))
+```
 
 
 
