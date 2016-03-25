@@ -72,7 +72,7 @@ echo $view->view(array(
   new V\Div(array(
     new V\Div('Contenu', array('id' => 'subdiv'))
   ), array('class' => 'test')),
-  new V\Img(array('src' => 'images/img.png'))
+  new V\Img(array('src' => 'img/img.png'))
 ));
 ```
 Le framework gérant l'indentation de l'HTML, vous n'avez pas à vous en soucier :smiley:
