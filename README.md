@@ -37,7 +37,7 @@ In HTML there are 2 types of tag :
  - Orphan's tags (example `<img>`)
  - Tags in peer (example `<div></div>`)
 
-Orphan's tags can have some attributes, but tags in peer can have childrens, in addition to attributes.
+Orphan's tags can have some attributes, but tags in peer can have childrens, in addition to attributes
 
 To create a tag, use `new` keyword, the namespace (here `V` alias), and the tag's name
 ```php
@@ -49,30 +49,30 @@ new V\Div(array(
   new V\Div()
 ), array('class' => 'test'))
 ```
-On peut également passer directement un texte à la place du tableau de composant
+We can give a string instead the array of tags.
 ```php
-new V\Div('Contenu', array('class' => 'test'))
+new V\Div('Content', array('class' => 'test'))
 ```
-Les balises orphelines ne pouvant pas avoir de contenu, elles ne prennent qu'un tableau associatif pour les attributs comme argument.
+Orphan's tags can't have childrens, so they take only one associative array for attributes
 ```php
-new V\Img(array('src' => 'images/img.png'))
+new V\Img(array('src' => 'img/img.png'))
 ```
 
-Pour afficher des balises on utilise la fonction `view()` de notre variable `$view`
+To print tags we must use `view()` function of `$view` variable
 ```php
 $view->view();
 ```
-Cette fonction nous retourne le code HTML à afficher. Il faut donc faire un `echo`
+This function return the HTML code to print. So use `echo` function one the return
 ```php
 echo $view->view();
 ```
-On donne à la fonction `view()` un tableau contenant les balises à afficher
+We give to `view()` function an array with tags to print
 ```php
 echo $view->view(array(
   new V\Div(array(
-    new V\Div('Contenu', array('id' => 'subdiv'))
+    new V\Div('Content', array('id' => 'subdiv'))
   ), array('class' => 'test')),
-  new V\Img(array('src' => 'images/img.png'))
+  new V\Img(array('src' => 'img/img.png'))
 ));
 ```
-Le framework gérant l'indentation de l'HTML, vous n'avez pas à vous en soucier :smiley:
+The framework manage the HTML's indentation, you can be zen :smiley:
