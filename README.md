@@ -76,8 +76,7 @@ echo $view->view(array(
   new V\Img(array('src' => 'images/img.png'))
 ));
 ```
-
-
+Le framework gérant l'indentation de l'HTML, vous n'avez pas à vous en soucier :smiley:
 
 
 
