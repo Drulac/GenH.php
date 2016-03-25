@@ -1,5 +1,5 @@
 # PhpGenHTML
-A little PHP framework to easily generate clean HTML code, with automatic identation.  
+A little PHP framework to easily generate clean HTML code, with automatic indentation.  
 Un petit framework PHP pour générer facilement du code HTML propre, avec une indentation automatique.
 
 ##Français
