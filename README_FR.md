@@ -37,7 +37,7 @@ En HTML il y a 2 types de balise :
  - Les balises orphelines (exemple `<img>`)
  - Les balises en paires (exemple `<div></div>`)
 
-Les balises orphelines possèdent différents attributs, tandis que les balises en paires peuvent accueillir du contenu, en plus des attributs.
+Les balises orphelines possèdent différents attributs, tandis que les balises en paires peuvent accueillir du contenu, en plus des attributs
 
 Pour créer une balise, on utilise le mot clé `new`, le namespace (ici l'alias `V` est utilisé), puis le nom de la balise
 ```php
@@ -53,9 +53,9 @@ On peut également passer directement un texte à la place du tableau de balises
 ```php
 new V\Div('Contenu', array('class' => 'test'))
 ```
-Les balises orphelines ne pouvant pas avoir de contenu, elles ne prennent qu'un tableau associatif pour les attributs comme argument.
+Les balises orphelines ne pouvant pas avoir de contenu, elles ne prennent qu'un tableau associatif pour les attributs comme argument
 ```php
-new V\Img(array('src' => 'images/img.png'))
+new V\Img(array('src' => 'img/img.png'))
 ```
 
 Pour afficher des balises on utilise la fonction `view()` de notre variable `$view`
