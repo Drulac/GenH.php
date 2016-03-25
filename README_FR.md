@@ -49,7 +49,7 @@ new V\Div(array(
   new V\Div()
 ), array('class' => 'test'))
 ```
-On peut également passer directement un texte à la place du tableau de composant
+On peut également passer directement un texte à la place du tableau de balises
 ```php
 new V\Div('Contenu', array('class' => 'test'))
 ```
