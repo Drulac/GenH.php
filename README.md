@@ -2,13 +2,6 @@
 A little PHP framework to easily generate clean HTML code, with automatic identation.
 Un petit framework PHP pour générer facilement du code HTML propre, avec une indentation automatique.
 
-
-
-
-
-
-
-
 ##Français
 
 Vous pouvez regarder le fichier [sample.php](https://github.com/Drulac/PhpGenHTML/blob/master/sample.php), c'est un code exemple d'utilisation du framework.
@@ -31,7 +24,7 @@ Affichez ensuite le retour de la fonction **start()** pour afficher le doctype H
 echo $view->start();
 ```
 
-**_Récapitulatif_** :
+### Récapitulatif :
 ```php
 include('view.php');
 use PhpGenHTML as V;
@@ -55,7 +48,7 @@ echo $view->start();
 
 
 
-## Documentation
+## English
 ###### Loading
 You must include the code file.
 ```php
@@ -74,7 +67,7 @@ Print the return of the **start()** function to print the html doctype and the h
 echo $view->start();
 ```
 
-**_Loading Example_** :
+### Sample :
 ```php
 include('view.php');
 use PhpGenHTML as PGH;
