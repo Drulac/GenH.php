@@ -1,30 +1,29 @@
 # PhpGenHTML
-A little PHP framework to easily generate clean HTML code, with automatic indentation.  
-Un petit framework PHP pour générer facilement du code HTML propre, avec une indentation automatique.
+A little PHP framework to easily generate clean HTML code, with automatic indentation.
 
-##Français
+## English
 
-Vous pouvez jeter un coup d'oeil au fichier [sample.php](https://github.com/Drulac/PhpGenHTML/blob/master/sample.php), c'est un code d'exemple d'utilisation du framework.
+You can look into [sample.php](https://github.com/Drulac/PhpGenHTML/blob/master/sample.php), it's an example code of framework using
 
-### Chargement
-Vous devez inclure le fichier [view.php](https://github.com/Drulac/PhpGenHTML/blob/master/view.php) qui contient le code du framework
+### Loading
+You must include [view.php](https://github.com/Drulac/PhpGenHTML/blob/master/view.php) who contains framework's code
 ```php
 include('view.php');
 ```
-Vous pouvez utiliser un alias pour gagner du temps en écrivant moins de caractères à chaque fois
+You can use an alias to spend less time to write namespace's name
 ```php
 use PhpGenHTML as V;
 ```
-Créez une variable contenant un objet View, du namespace PhpGenHTML (ici l'alias `V` est utilisé). Cette variable qui va nous servir pour récupérer le code HTML à afficher.
+Create a `View` object variable, from PhpGenHTML namespace (I use the `V` alias ). We use this variable get the HTML code
 ```php
 $view = New V\View();
 ```
-Affichez ensuite le retour de la fonction `start()` pour afficher le doctype HTML et le tag HTML de départ.
+Print the return of the `start()` function print the HTML doctype and the html tag.
 ```php
 echo $view->start();
 ```
 
-#### Récapitulatif :
+#### Summary :
 ```php
 include('view.php');
 use PhpGenHTML as V;
@@ -32,19 +31,19 @@ $view = New V\View();
 echo $view->start();
 ```
 
-### Balises
+### Tags
 
-En HTML il y a 2 types de balise :
- - Les balises orphelines (exemple `<img>`)
- - Les balises en paires (exemple `<div></div>`)
+In HTML there are 2 types of tag :
+ - Orphan's tags (example `<img>`)
+ - Tags in peer (example `<div></div>`)
 
-Les balises orphelines possèdent différents attributs, tandis que les balises en paires peuvent accueillir du contenu, en plus des attributs.
+Orphan's tags can have some attributes, but tags in peer can have childrens, in addition to attributes.
 
-Pour créer une balise, on utilise le mot clé `new`, le namespace (ici l'alias `V` est utilisé), puis le nom de la balise
+To create a tag, use `new` keyword, the namespace (here `V` alias), and the tag's name
 ```php
 new V\Div()
 ```
-Pour les balises en paires, on donne comme arguments un tableau avec les balises enfants, puis un tableau associatif avec les attributs
+For tags in peer, we give an array with children's tags, and an associative array with attributes
 ```php
 new V\Div(array(
   new V\Div()
@@ -77,40 +76,3 @@ echo $view->view(array(
 ));
 ```
 Le framework gérant l'indentation de l'HTML, vous n'avez pas à vous en soucier :smiley:
-
-
-
-
-
-
-
-
-
-
-
-## English
-###### Loading
-You must include the code file.
-```php
-include('view.php');
-```
-You can use an alias to code faster, with less chars.
-```php
-use PhpGenHTML as PGH;
-```
-Make into a variable PGH object.
-```php
-$view = New PGH\View();
-```
-Print the return of the **start()** function to print the html doctype and the html start tag.
-```php
-echo $view->start();
-```
-
-### Sample :
-```php
-include('view.php');
-use PhpGenHTML as PGH;
-$view = New PGH\View();
-echo $view->start();
-```
