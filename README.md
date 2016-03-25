@@ -34,23 +34,6 @@ echo $view->start();
 
 ### Balises
 
-Pour afficher des balises on utilise la fonction `view()` de notre variable `$view`
-```php
-$view->view();
-```
-cette fonction nous retourne le code HTML à afficher. Il faut donc faire un `echo`
-```php
-echo $view->view();
-```
-On donne à la fonction `view()` un tableau contenant les balises à afficher
-```php
-echo $view->view(array(
-  $composant1,
-  $composant2,
-  $composant3
-));
-```
-
 En HTML il y a 2 types de balises :
  - Les balises orphelines (exemple `<img>`)
  - Les balises en paires (exemple `<div></div>`)
@@ -65,12 +48,35 @@ Pour les balises en paires, on donne comme arguments un tableau avec les balises
 ```php
 new V\Div(array(
   new V\Div()
-), array('id' => 'htwo', 'class' => 'test'))
+), array('class' => 'test'))
 ```
 On peut également passer directemnt un texte à la place du tableau de composant
 ```php
-new V\Div('Contenu', array('id' => 'htwo', 'class' => 'test'))
+new V\Div('Contenu', array('class' => 'test'))
 ```
+Les balises orphelines ne pouvant pas avoir de contenu, elles ne prennent qu'un tableau associatif pour les attributs comme argument.
+```php
+new V\Img(array('src' => 'images/img.png'))
+```
+
+Pour afficher des balises on utilise la fonction `view()` de notre variable `$view`
+```php
+$view->view();
+```
+cette fonction nous retourne le code HTML à afficher. Il faut donc faire un `echo`
+```php
+echo $view->view();
+```
+On donne à la fonction `view()` un tableau contenant les balises à afficher
+```php
+echo $view->view(array(
+  new V\Div(array(
+    new V\Div('Contenu', array('id' => 'subdiv'))
+  ), array('class' => 'test')),
+  new V\Img(array('src' => 'images/img.png'))
+));
+```
+
 
 
 
