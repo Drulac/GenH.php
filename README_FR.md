@@ -45,17 +45,17 @@ new V\Div()
 ```
 Pour les balises en paires, on donne comme arguments un tableau avec les balises enfants, puis un tableau associatif avec les attributs
 ```php
-new V\Div(array(
+new V\Div([
   new V\Div()
-), array('class' => 'test'))
+], ['class' => 'test'])
 ```
 On peut également passer directement un texte à la place du tableau de balises
 ```php
-new V\Div('Contenu', array('class' => 'test'))
+new V\Div('Content', ['class' => 'test'])
 ```
 Les balises orphelines ne pouvant pas avoir de contenu, elles ne prennent qu'un tableau associatif pour les attributs comme argument
 ```php
-new V\Img(array('src' => 'img/img.png'))
+new V\Img(['src' => 'img/img.png'])
 ```
 
 Pour afficher des balises on utilise la fonction `view()` de notre variable `$view`
@@ -68,11 +68,11 @@ echo $view->view();
 ```
 On donne à la fonction `view()` un tableau contenant les balises à afficher
 ```php
-echo $view->view(array(
-  new V\Div(array(
-    new V\Div('Contenu', array('id' => 'subdiv'))
-  ), array('class' => 'test')),
-  new V\Img(array('src' => 'img/img.png'))
-));
+echo $view->view([
+  new V\Div([
+    new V\Div('Content', ['id' => 'subdiv'])
+  ], ['class' => 'test']),
+  new V\Img(['src' => 'img/img.png'])
+]);
 ```
 Le framework gérant l'indentation de l'HTML, vous n'avez pas à vous en soucier :smiley:
