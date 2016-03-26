@@ -45,17 +45,17 @@ new V\Div()
 ```
 For tags in peer, we give an array with children's tags, and an associative array with attributes
 ```php
-new V\Div(array(
+new V\Div([
   new V\Div()
-), array('class' => 'test'))
+], ['class' => 'test'])
 ```
 We can give a string instead the array of tags.
 ```php
-new V\Div('Content', array('class' => 'test'))
+new V\Div('Content', ['class' => 'test'])
 ```
 Orphan's tags can't have childrens, so they take only one associative array for attributes
 ```php
-new V\Img(array('src' => 'img/img.png'))
+new V\Img(['src' => 'img/img.png'])
 ```
 
 To print tags we must use `view()` function of `$view` variable
@@ -68,11 +68,11 @@ echo $view->view();
 ```
 We give to `view()` function an array with tags to print
 ```php
-echo $view->view(array(
-  new V\Div(array(
-    new V\Div('Content', array('id' => 'subdiv'))
-  ), array('class' => 'test')),
-  new V\Img(array('src' => 'img/img.png'))
-));
+echo $view->view([
+  new V\Div([
+    new V\Div('Content', ['id' => 'subdiv'])
+  ], ['class' => 'test']),
+  new V\Img(['src' => 'img/img.png'])
+]);
 ```
 The framework manage the HTML's indentation, you can be zen :smiley:
