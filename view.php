@@ -1,11 +1,8 @@
 <?php
-	
 namespace PhpGenHTML
 {
-	
 	class View
 	{
-	
 		private $level;
 		private $html_start = 0;
 		private $head_start = 0;
@@ -145,17 +142,22 @@ namespace PhpGenHTML
 				$this->array = $array;
 			return 1;
 		}
-	
-		public function setAttribut($attribut)
+
+		public function getAttribut()
 		{
-			if (!empty($attribut))
-				$this->attribut = $attribut;
-			return 1;
+			if(!empty($this->attribut))
+			{
+				return $this->attribut;
+			}else{
+				$class = get_class($this);
+				$this->attribut = strtolower(substr($class, 11, strlen($class) - 11));
+				return $this->attribut;
+			}
 		}
 
-		public function code($view)
+		public function getCode($view)
 		{
-			$code = '<'.$this->attribut;
+			$code = '<'.$this->getAttribut();
 			if (!empty($this->array)) {
 				if (gettype($this->array) == 'array'){
 					foreach ($this->array as $cle => $element) {
@@ -174,7 +176,7 @@ namespace PhpGenHTML
 	class Container
 	{
 		public $array;
-		public $attribut;
+		private $attribut;
 		public $content;
 	
 		public function __construct($content = '', $array = NULL)
@@ -185,19 +187,24 @@ namespace PhpGenHTML
 				$this->content = $content;
 			return 1;
 		}
-	
-		public function setAttribut($attribut)
+
+		public function getAttribut()
 		{
-			if (!empty($attribut))
-				$this->attribut = $attribut;
-			return 1;
+			if(!empty($this->attribut))
+			{
+				return $this->attribut;
+			}else{
+				$class = get_class($this);
+				$this->attribut = strtolower(substr($class, 11, strlen($class) - 11));
+				return $this->attribut;
+			}
 		}
 	
-		public function code($view)
+		public function getCode($view)
 		{
 			$code = '';
 			if(!empty($this->array) || !empty($this->content)){
-				$code = '<'.$this->attribut;
+				$code = '<'.$this->getAttribut();
 				if (!empty($this->array)) {
 					foreach ($this->array as $cle => $element) {
 						if (!empty($element) && !empty($cle))
@@ -212,274 +219,71 @@ namespace PhpGenHTML
 					$code .= $add."\n".$view->level();
 				}
 
-				$code .= '</'.$this->attribut.'>';
+				$code .= '</'.$this->getAttribut().'>';
 			}
-			if($code == '<'.$this->attribut.'></'.$this->attribut.'>')
+			if($code == '<'.$this->getAttribut().'></'.$this->getAttribut().'>')
 				$code = '';
 			return $code;
 		}
 	}
 	
-	class Input extends Element
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('input');
-			return $this->code($view);
-		}
-	}
+	class Input extends Element{}
 	
-	class Link extends Element
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('link');
-			return $this->code($view);
-		}
-	}
+	class Link extends Element{}
 
-	class Meta extends Element
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('meta');
-			return $this->code($view);
-		}
-	}
+	class Meta extends Element{}
 
-	class Img extends Element
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('img');
-			return $this->code($view);
-		}
-	}
+	class Img extends Element{}
 	
-	class Script extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('script');
-			return $this->code($view);
-		}
-	}
+	class Script extends Container{}
 	
-	class Style extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('style');
-			return $this->code($view);
-		}
-	}
+	class Style extends Container{}
 
-	class Div extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('div');
-			return $this->code($view);
-		}
-	}
+	class Div extends Container{}
 
-	class Pre extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('pre');
-			return $this->code($view);
-		}
-	}
+	class Pre extends Container{}
 
-	class Ul extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('ul');
-			return $this->code($view);
-		}
-	}
+	class Ul extends Container{}
 
-	class Li extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('li');
-			return $this->code($view);
-		}
-	}
+	class Li extends Container{}
 
-	class Header extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('header');
-			return $this->code($view);
-		}
-	}
+	class Header extends Container{}
 
-	class Title extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('title');
-			return $this->code($view);
-		}
-	}
+	class Title extends Container{}
 
-	class Head extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('head');
-			return $this->code($view);
-		}
-	}
+	class Head extends Container{}
 
-	class Form extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('form');
-			return $this->code($view);
-		}
-	}
+	class Form extends Container{}
 
-	class Button extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('button');
-			return $this->code($view);
-		}
-	}
+	class Button extends Container{}
 	
-	class A extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('a');
-			return $this->code($view);
-		}
-	}
+	class A extends Container{}
 	
-	class P extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('p');
-			return $this->code($view);
-		}
-	}
+	class P extends Container{}
 	
-	class Span extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('span');
-			return $this->code($view);
-		}
-	}
+	class Span extends Container{}
 	
-	class Strong extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('strong');
-			return $this->code($view);
-		}
-	}
+	class Strong extends Container{}
 	
-	class Em extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('em');
-			return $this->code($view);
-		}
-	}
+	class Em extends Container{}
 	
-	class Code extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('code');
-			return $this->code($view);
-		}
-	}
+	class Code extends Container{}
 	
-	class H1 extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('h1');
-			return $this->code($view);
-		}
-	}
+	class H1 extends Container{}
 	
-	class H2 extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('h2');
-			return $this->code($view);
-		}
-	}
+	class H2 extends Container{}
 	
-	class H3 extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('h3');
-			return $this->code($view);
-		}
-	}
+	class H3 extends Container{}
 	
-	class H4 extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('h4');
-			return $this->code($view);
-		}
-	}
+	class H4 extends Container{}
 	
-	class H5 extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('h5');
-			return $this->code($view);
-		}
-	}
+	class H5 extends Container{}
 	
-	class H6 extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('h6');
-			return $this->code($view);
-		}
-	}
+	class H6 extends Container{}
 	
-	class TextArea extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('textarea');
-			return $this->code($view);
-		}
-	}
+	class TextArea extends Container{}
 	
-	class Canvas extends Container
-	{
-		public function getCode($view)
-		{
-			$this->setAttribut('canvas');
-			return $this->code($view);
-		}
-	}
+	class Canvas extends Container{}
 	
 	class Line
 	{
