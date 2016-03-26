@@ -75,4 +75,4 @@ echo $view->view([
   new V\Img(['src' => 'img/img.png'])
 ]);
 ```
-The framework manage the HTML's indentation, you can be zen :smiley:
+The framework manage the HTML's indentation, you won't have to worry about that :smiley:
