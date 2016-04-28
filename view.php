@@ -227,63 +227,34 @@ namespace GenH
 	}
 	
 	class Input extends Element{}
-	
 	class Link extends Element{}
-
 	class Meta extends Element{}
-
 	class Img extends Element{}
-	
 	class Script extends Container{}
-	
 	class Style extends Container{}
-
 	class Div extends Container{}
-
 	class Pre extends Container{}
-
 	class Ul extends Container{}
-
 	class Li extends Container{}
-
 	class Header extends Container{}
-
 	class Title extends Container{}
-
 	class Head extends Container{}
-
 	class Form extends Container{}
-
 	class Button extends Container{}
-	
 	class A extends Container{}
-	
 	class P extends Container{}
-	
 	class Span extends Container{}
-	
 	class Strong extends Container{}
-	
 	class Em extends Container{}
-	
 	class Code extends Container{}
-	
 	class H1 extends Container{}
-	
 	class H2 extends Container{}
-	
 	class H3 extends Container{}
-	
 	class H4 extends Container{}
-	
 	class H5 extends Container{}
-	
 	class H6 extends Container{}
-	
 	class TextArea extends Container{}
-	
 	class Canvas extends Container{}
-	
 	class Line
 	{
 		public function getCode($view)
