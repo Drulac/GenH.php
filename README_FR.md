@@ -12,9 +12,9 @@ include('view.php');
 ```
 Vous pouvez utiliser un alias pour gagner du temps en écrivant moins de caractères à chaque fois
 ```php
-use GenH.php as V;
+use GenH as V;
 ```
-Créez une variable contenant un objet `View`, du namespace GenH.php (ici l'alias `V` est utilisé). Cette variable qui va nous servir pour récupérer le code HTML à afficher
+Créez une variable contenant un objet `View`, du namespace GenH (ici l'alias `V` est utilisé). Cette variable qui va nous servir pour récupérer le code HTML à afficher
 ```php
 $view = New V\View();
 ```
@@ -26,7 +26,7 @@ echo $view->start();
 #### Récapitulatif :
 ```php
 include('view.php');
-use GenH.php as V;
+use GenH as V;
 $view = New V\View();
 echo $view->start();
 ```
