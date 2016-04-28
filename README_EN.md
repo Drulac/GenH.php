@@ -12,9 +12,9 @@ include('view.php');
 ```
 You can use an alias to spend less time to write namespace's name
 ```php
-use PhpGenHTML as V;
+use GenH as V;
 ```
-Create a `View` object variable, from PhpGenHTML namespace (I use the `V` alias ). We use this variable get the HTML code
+Create a `View` object variable, from GenH namespace (I use the `V` alias ). We use this variable get the HTML code
 ```php
 $view = New V\View();
 ```
@@ -26,7 +26,7 @@ echo $view->start();
 #### Summary :
 ```php
 include('view.php');
-use PhpGenHTML as V;
+use GenH as V;
 $view = New V\View();
 echo $view->start();
 ```
