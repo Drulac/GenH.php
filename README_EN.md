@@ -1,12 +1,12 @@
-# PhpGenHTML
+# GenH.php
 A little PHP framework to easily generate clean HTML code, with automatic indentation.
 
 ## English
 
-You can look into [sample.php](https://github.com/Drulac/PhpGenHTML/blob/master/sample.php), it's an example code of framework using
+You can look into [sample.php](https://github.com/Drulac/GenH.php/blob/master/sample.php), it's an example code of framework using
 
 ### Loading
-You must include [view.php](https://github.com/Drulac/PhpGenHTML/blob/master/view.php) who contains framework's code
+You must include [view.php](https://github.com/Drulac/GenH.php/blob/master/view.php) who contains framework's code
 ```php
 include('view.php');
 ```
