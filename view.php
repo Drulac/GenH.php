@@ -30,8 +30,7 @@ namespace PhpGenHTML
 	
 		public function end()
 		{
-			$code = '';
-			$code .= $this->bodyEnd();
+			$code = $this->bodyEnd();
 			if ($this->html_start) {
 				$this->html_start = 0;
 				$this->levelDown();
