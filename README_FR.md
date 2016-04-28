@@ -1,20 +1,20 @@
-# PhpGenHTML
+# GenH.php
 Un petit framework PHP pour générer facilement du code HTML propre, avec une indentation automatique.
 
 ##Français
 
-Vous pouvez jeter un coup d'oeil au fichier [sample.php](https://github.com/Drulac/PhpGenHTML/blob/master/sample.php), c'est un code d'exemple d'utilisation du framework.
+Vous pouvez jeter un coup d'oeil au fichier [sample.php](https://github.com/Drulac/GenH.php/blob/master/sample.php), c'est un code d'exemple d'utilisation du framework.
 
 ### Chargement
-Vous devez inclure le fichier [view.php](https://github.com/Drulac/PhpGenHTML/blob/master/view.php) qui contient le code du framework
+Vous devez inclure le fichier [view.php](https://github.com/Drulac/GenH.php/blob/master/view.php) qui contient le code du framework
 ```php
 include('view.php');
 ```
 Vous pouvez utiliser un alias pour gagner du temps en écrivant moins de caractères à chaque fois
 ```php
-use PhpGenHTML as V;
+use GenH.php as V;
 ```
-Créez une variable contenant un objet `View`, du namespace PhpGenHTML (ici l'alias `V` est utilisé). Cette variable qui va nous servir pour récupérer le code HTML à afficher
+Créez une variable contenant un objet `View`, du namespace GenH.php (ici l'alias `V` est utilisé). Cette variable qui va nous servir pour récupérer le code HTML à afficher
 ```php
 $view = New V\View();
 ```
@@ -26,7 +26,7 @@ echo $view->start();
 #### Récapitulatif :
 ```php
 include('view.php');
-use PhpGenHTML as V;
+use GenH.php as V;
 $view = New V\View();
 echo $view->start();
 ```
