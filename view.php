@@ -1,5 +1,5 @@
 <?php
-namespace PhpGenHTML
+namespace GenH
 {
 	class View
 	{
