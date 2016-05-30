@@ -60,7 +60,6 @@ namespace GenH
 			}
 			return '';
 		}
-
 		public function view($array)
 		{
 			$code = '';
@@ -72,7 +71,6 @@ namespace GenH
 		
 				while ($i < $c) {
 					if (gettype($array[$i]) == 'object') {
-
 						$add = $array[$i]->getCode($this);
 						if(!empty($add))
 							$code .= "\n".$this->level.$add;
@@ -112,7 +110,6 @@ namespace GenH
 				), array('class' => 'erreur'))
 			));
 		}
-
 		private function levelUp()
 		{
 			$this->level .= "\t";
@@ -128,7 +125,6 @@ namespace GenH
 			return $this->level;
 		}
 	}
-
 	//__construct($array)
 	class Element
 	{
@@ -141,7 +137,6 @@ namespace GenH
 				$this->array = $array;
 			return 1;
 		}
-
 		public function getAttribut()
 		{
 			if(!empty($this->attribut))
@@ -149,11 +144,10 @@ namespace GenH
 				return $this->attribut;
 			}else{
 				$class = get_class($this);
-				$this->attribut = strtolower(substr($class, 11, strlen($class) - 11));
+				$this->attribut = explode('\\' , strtolower($class))[1];
 				return $this->attribut;
 			}
 		}
-
 		public function getCode($view)
 		{
 			$code = '<'.$this->getAttribut();
@@ -170,7 +164,6 @@ namespace GenH
 			return $code;
 		}
 	}
-
 	//__construct($content, $array)
 	class Container
 	{
@@ -186,7 +179,6 @@ namespace GenH
 				$this->content = $content;
 			return 1;
 		}
-
 		public function getAttribut()
 		{
 			if(!empty($this->attribut))
@@ -194,7 +186,7 @@ namespace GenH
 				return $this->attribut;
 			}else{
 				$class = get_class($this);
-				$this->attribut = strtolower(substr($class, 11, strlen($class) - 11));
+				$this->attribut = explode('\\' , strtolower($class))[1];
 				return $this->attribut;
 			}
 		}
@@ -217,7 +209,6 @@ namespace GenH
 					$add = $view->view($this->content);
 					$code .= $add."\n".$view->level();
 				}
-
 				$code .= '</'.$this->getAttribut().'>';
 			}
 			if($code == '<'.$this->getAttribut().'></'.$this->getAttribut().'>')
