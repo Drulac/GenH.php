@@ -234,6 +234,7 @@ namespace GenH
 	class Button extends Container{}
 	class A extends Container{}
 	class P extends Container{}
+	class I extends Container{}
 	class Span extends Container{}
 	class Strong extends Container{}
 	class Em extends Container{}
@@ -246,6 +247,9 @@ namespace GenH
 	class H6 extends Container{}
 	class TextArea extends Container{}
 	class Canvas extends Container{}
+	class Label extends Container{}
+	class Select extends Container{}
+	class Option extends Container{}
 	class Line
 	{
 		public function getCode($view)
